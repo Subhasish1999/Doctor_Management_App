@@ -1,5 +1,6 @@
 const express = require("express");
-const { loginController, registerController } = require("../controllers/userController");
+const { loginController, registerController, authControler } = require("../controllers/userController");
+const authMiddleware = require("../middlewares/auth.middleware");
 
 //router object
 
@@ -13,5 +14,8 @@ router.post("/login", loginController);
 //REGISTER || POST
 
 router.post("/register", registerController);
+
+//Authorization || POST
+router.post("/getUserData", authMiddleware, authControler)
 
 module.exports = router;
